@@ -26,35 +26,32 @@ st.set_page_config(
 # ---------------------- THEME & STYLING ----------------------
 st.markdown("""
 <style>
-body {
-    background-color: #1e1e1e;
-    color: #F5F5F5;
-}
-h1,h2,h3,h4 {
-    color: #FFD700 !important;  /* Gold headers */
-}
-.stButton>button {
-    background-color: #800020;  /* Burgundy */
-    color: #F5F5F5;
-    border-radius: 8px;
-    padding: 8px 20px;
-    border: none;
-}
-.stButton>button:hover {
-    background-color: #FFD700;  /* Gold hover */
-    color: #2E2E2E;
-}
-footer {
-    color: gray;
-    text-align: center;
-    padding-top: 20px;
-}
-.stDataFrame thead th {
-    background-color: #800020;
-    color: #F5F5F5;
-}
+
+ /* Fix for Option Menu Buttons Rendering Weirdly */
+ .nav-link {
+    white-space: nowrap !important;       /* Prevent text breaking */
+    line-height: 1.3 !important;          /* Proper vertical alignment */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+ }
+
+ /* Ensures uniform button height */
+ .nav-link span {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+ }
+
+ /* Fix height stretching in Streamlit Cloud */
+ .nav-link-selected,
+ .nav-link:hover {
+    line-height: 1.3 !important;
+ }
+
 </style>
 """, unsafe_allow_html=True)
+
 
 # ---------------------- SIDEBAR NAVIGATION ----------------------
 from streamlit_option_menu import option_menu
