@@ -74,6 +74,8 @@ ROLE_SKILLS = {
     "Backend Developer": "Python Django Flask SQL APIs",
     "Full Stack Developer": "HTML CSS JS Node React Python SQL",
     "Data Scientist": "Python SQL Machine Learning Statistics Pandas Numpy",
+    "Data Analyst": "Python SQL Excel Tableau PowerBI Pandas Numpy",
     "DevOps Engineer": "AWS Docker Kubernetes Linux CI/CD",
     "Cloud Engineer": "AWS Azure GCP Terraform DevOps"
 }
+
