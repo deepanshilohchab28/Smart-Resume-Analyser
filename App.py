@@ -27,12 +27,45 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* Prevent option menu text from breaking into two lines */
+body {
+    background-color: #1e1e1e;
+    color: #F5F5F5;
+}
+h1,h2,h3,h4 {
+    color: #FFD700 !important;  /* Gold headers */
+}
+
+.stButton>button {
+    background-color: #800020;  /* Burgundy */
+    color: #F5F5F5;
+    border-radius: 8px;
+    padding: 8px 20px;
+    border: none;
+}
+.stButton>button:hover {
+    background-color: #FFD700;  /* Gold hover */
+    color: #2E2E2E;
+}
+
+footer {
+    color: gray;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.stDataFrame thead th {
+    background-color: #800020;
+    color: #F5F5F5;
+}
+
+/* ---------------- FIXES BELOW ---------------- */
+
+/* Prevent option_menu text from breaking into 2 lines */
 .nav-link {
     white-space: nowrap !important;
 }
 
-/* Increase sidebar width slightly (fixes wrapping) */
+/* Fix sidebar width so text fits */
 section[data-testid="stSidebar"] {
     min-width: 270px !important;
     max-width: 270px !important;
@@ -40,6 +73,7 @@ section[data-testid="stSidebar"] {
 
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ---------------------- SIDEBAR NAVIGATION ----------------------
