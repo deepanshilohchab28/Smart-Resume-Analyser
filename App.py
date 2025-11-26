@@ -27,27 +27,16 @@ st.set_page_config(
 st.markdown("""
 <style>
 
- /* Fix for Option Menu Buttons Rendering Weirdly */
- .nav-link {
-    white-space: nowrap !important;       /* Prevent text breaking */
-    line-height: 1.3 !important;          /* Proper vertical alignment */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
- }
-
- /* Ensures uniform button height */
- .nav-link span {
-    font-size: 16px !important;
-    font-weight: 600 !important;
+/* Prevent option menu text from breaking into two lines */
+.nav-link {
     white-space: nowrap !important;
- }
+}
 
- /* Fix height stretching in Streamlit Cloud */
- .nav-link-selected,
- .nav-link:hover {
-    line-height: 1.3 !important;
- }
+/* Increase sidebar width slightly (fixes wrapping) */
+section[data-testid="stSidebar"] {
+    min-width: 270px !important;
+    max-width: 270px !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
