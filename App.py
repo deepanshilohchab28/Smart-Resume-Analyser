@@ -58,14 +58,11 @@ footer {
     color: #F5F5F5;
 }
 
-/* ---------------- FIXES BELOW ---------------- */
 
-/* Prevent option_menu text from breaking into 2 lines */
 .nav-link {
     white-space: nowrap !important;
 }
 
-/* Fix sidebar width so text fits */
 section[data-testid="stSidebar"] {
     min-width: 270px !important;
     max-width: 270px !important;
