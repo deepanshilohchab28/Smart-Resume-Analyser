@@ -44,30 +44,26 @@ def extract_text(file):
         return file.read().decode('utf-8', errors='ignore')
 
 def extract_candidate_details(text):
-    # Clean text to remove excessive newlines/spaces
-    cleaned = " ".join(text.split())
+    import docx2txt, PyPDF2
+    if file.name.endswith('.pdf'):
+        reader = PyPDF2.PdfReader(file)
+        return "".join(page.extract_text() for page in reader.pages)
+    elif file.name.endswith('.docx'):
+        return docx2txt.process(file)
+    else:
+        return file.read().decode('utf-8', errors='ignore')
 
-    # NAME: Capture uppercase names or normal names
-    name_match = re.search(r'\b([A-Z][A-Z]+(?:\s[A-Z][A-Z]+)+)\b', cleaned)
-    if not name_match:
-        # fallback for normal names
-        name_match = re.search(r'\b[A-Z][a-zA-Z]+\s[A-Z][a-zA-Z]+\b', cleaned)
-
-    # EMAIL
-    email_match = re.search(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', cleaned)
-
-    # PHONE
-    phone_match = re.search(r'\+?\d[\d\s\-]{8,}\d', cleaned)
-
-    # SKILLS
-    skills = re.findall(r'\b[A-Za-z\#\+]{2,20}\b', text.lower())
-
+def extract_candidate_details(text):
+    name = re.findall(r'[A-Z][a-z]+\s[A-Z][a-z]+', text)
+    email = re.findall(r'[\w\.-]+@[\w\.-]+\.\w+', text)
+    phone = re.findall(r'\+?\d[\d\s\-\(\)]{8,}\d', text)
+    skills = re.findall(r'\b[A-Za-z\#\+]{2,15}\b', text.lower())
     return {
-        "Name": name_match.group(0) if name_match else "Unknown",
-        "Email": email_match.group(0) if email_match else "Not Found",
-        "Phone": phone_match.group(0) if phone_match else "Not Found",
+        "Name": name[0] if name else "Unknown",
+        "Email": email[0] if email else "Not Found",
+        "Phone": phone[0] if phone else "Not Found",
         "Skills": list(set(skills))
-    }
+    }
 
 def extract_skills_from_jd(jd_text):
     return [s.lower().strip() for s in re.findall(r'\b[A-Za-z\#\+]{2,15}\b', jd_text)]
@@ -92,5 +88,6 @@ ROLE_SKILLS = {
     "DevOps Engineer": "AWS Docker Kubernetes Linux CI/CD",
     "Cloud Engineer": "AWS Azure GCP Terraform DevOps"
 }
+
 
 
